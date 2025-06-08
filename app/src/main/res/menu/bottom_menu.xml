@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainpage"
+        android:icon="@drawable/vector"
+        android:title="Main page"/>
+    <item
+        android:id="@+id/orders"
+        android:icon="@drawable/icons_304"
+        android:title="Orders" />
+    <item
+        android:id="@+id/sales"
+        android:icon="@drawable/salesnew"
+        android:title="Sales" />
+</menu>
