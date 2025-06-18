@@ -20,7 +20,7 @@
         android:id="@+id/nameOfProducrDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/darkText"
         android:textStyle="bold"
         android:textSize="35sp"
         android:layout_margin="20dp"/>
@@ -28,7 +28,7 @@
         android:id="@+id/priceOfProducrDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/lightText"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="20dp"
@@ -37,7 +37,7 @@
         android:id="@+id/descriptionOfProducrDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/lightText"
         android:textSize="20sp"
         android:layout_margin="20dp"/>
     <LinearLayout
@@ -49,7 +49,7 @@
             android:id="@+id/butAddTocart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#FF9800"
+            android:backgroundTint="@color/pink"
             android:text="Add to cart"
             android:textSize="25sp"/>
     </LinearLayout>

@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class CreateAccount extends AppCompatActivity {
     int color = Color.rgb(255, 1, 1);
-    EditText firstName, lastName, emailAddressPhone, passwordNew, passwirdAgain, postIndex, city, street, house;
+    EditText firstName, emailAddressPhone, passwordNew, passwirdAgain, postIndex, city, street, house;
     Button continueB, returntoPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +35,8 @@ public class CreateAccount extends AppCompatActivity {
         });
         returntoPage = findViewById(R.id.returnToPage);
         continueB = findViewById(R.id.contCreate);
-        firstName = findViewById(R.id.firstn);
-        lastName = findViewById(R.id.lastn);
-        emailAddressPhone = findViewById(R.id.emailOrnumber);
+        firstName = findViewById(R.id.name);
+        emailAddressPhone = findViewById(R.id.email);
         passwordNew = findViewById(R.id.pas1n);
         passwirdAgain = findViewById(R.id.pas2n);
         postIndex = findViewById(R.id.postIndex);
@@ -55,7 +54,6 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String firstnameInput = firstName.getText().toString().trim();
-                String lastnameInput = lastName.getText().toString().trim();
                 String emailphoneInput = emailAddressPhone.getText().toString().trim();
                 String pass1Input = passwordNew.getText().toString().trim();
                 String pass2Input = passwirdAgain.getText().toString().trim();
@@ -63,7 +61,7 @@ public class CreateAccount extends AppCompatActivity {
                 String cityInput = city.getText().toString().trim();
                 String streetInput = street.getText().toString().trim();
                 String houseInput = house.getText().toString().trim();
-                if(isValuePassword(pass1Input, pass2Input) && isValueName(firstnameInput, lastnameInput, cityInput, streetInput, houseInput)
+                if(isValuePassword(pass1Input, pass2Input) && isValueName(firstnameInput, cityInput, streetInput, houseInput)
                 && isValueEmailOrNumber(emailphoneInput) && isValidPostalCode(postindexInput)) {
                     Toast.makeText(CreateAccount.this, "Account has been created!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CreateAccount.this, ShopPage.class);
@@ -93,16 +91,11 @@ public class CreateAccount extends AppCompatActivity {
         }
         return true;
     }
-    private boolean isValueName(String fname, String lname, String cityb, String streetb, String houseb){
+    private boolean isValueName(String fname, String cityb, String streetb, String houseb){
         if(TextUtils.isEmpty(fname)){
             firstName.setHint("Needs a name");
             firstName.setHintTextColor(color);
             street.setHintTextColor(color);
-            Toast.makeText(CreateAccount.this, "Please, put a name", Toast.LENGTH_SHORT).show();
-            return false;}
-        if(TextUtils.isEmpty(lname)) {
-            lastName.setHint("Needs a lastname");
-            lastName.setHintTextColor(color);
             Toast.makeText(CreateAccount.this, "Please, put a name", Toast.LENGTH_SHORT).show();
             return false;}
         if(TextUtils.isEmpty(cityb)) {

@@ -97,11 +97,19 @@ public class ShopList extends AppCompatActivity {
             Intent intent = new Intent(ShopList.this, ShopPage.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.categories) {
+            Intent intent = new Intent(ShopList.this, MyOrdersHistory.class);
+            startActivity(intent);
+            return true;
         } else if (id == R.id.orders) {
             Intent intent = new Intent(ShopList.this, MyOrdersHistory.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.sales) {
+        } else if (id == R.id.wishlist) {
+            Intent intent = new Intent(ShopList.this, MyOrdersHistory.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.profile) {
             Intent intent = new Intent(ShopList.this, Discounts.class);
             startActivity(intent);
             return true;

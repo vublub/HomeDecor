@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#F4B5A4</color>
+    <color name="lightPink">#FAF0E6</color>
+    <color name="darkText">#CC7861</color>
+    <color name="lightText">#DCBEB6</color>
+
 </resources>

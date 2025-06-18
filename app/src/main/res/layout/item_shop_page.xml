@@ -17,14 +17,14 @@
             android:id="@+id/nameOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="25sp"
             android:textStyle="bold"/>
         <TextView
             android:id="@+id/priceOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/darkText"
             android:textSize="20sp"
             android:layout_gravity="right"/>
     </LinearLayout>
