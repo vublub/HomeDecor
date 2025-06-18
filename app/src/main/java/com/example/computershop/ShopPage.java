@@ -1,15 +1,11 @@
 package com.example.computershop;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -21,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ShopPage extends AppCompatActivity {
-    Button returnback, configuration, motherboard, proseccor, videocard, ram, coolers, harddrive, cases, netcard, soundcard;
+    Button returnback, kitchen, livingRoom, bedroom, bathroom, office, diningRoom, decor;
     ImageButton notifications;
     BottomNavigationView menuNavigate;
     @Override
@@ -36,16 +32,13 @@ public class ShopPage extends AppCompatActivity {
         });
         notifications = findViewById(R.id.notifications);
         returnback = findViewById(R.id.returntosignin);
-        configuration = findViewById(R.id.configurations);
-        motherboard = findViewById(R.id.matPlata);
-        proseccor = findViewById(R.id.processor);
-        videocard = findViewById(R.id.videoCard);
-        ram = findViewById(R.id.ram);
-        coolers = findViewById(R.id.cooler);
-        harddrive = findViewById(R.id.harddrive);
-        cases = findViewById(R.id.caseComp);
-        netcard = findViewById(R.id.netcard);
-        soundcard = findViewById(R.id.soundcard);
+        kitchen = findViewById(R.id.kitchen);
+        livingRoom = findViewById(R.id.livingRoom);
+        bedroom = findViewById(R.id.bedroom);
+        bathroom = findViewById(R.id.bathroom);
+        office = findViewById(R.id.office);
+        diningRoom = findViewById(R.id.diningRoom);
+        decor = findViewById(R.id.decor);
         menuNavigate = findViewById(R.id.navigatMenu);
         menuNavigate.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
     }
@@ -54,34 +47,25 @@ public class ShopPage extends AppCompatActivity {
         if (id == R.id.returntosignin){
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.configurations) {
+        } else if (id == R.id.kitchen) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.matPlata) {
+        } else if (id == R.id.livingRoom) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.processor) {
+        } else if (id == R.id.bedroom) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.videoCard) {
+        } else if (id == R.id.bathroom) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.ram) {
+        } else if (id == R.id.office) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.cooler) {
+        } else if (id == R.id.diningRoom) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
-        } else if (id == R.id.harddrive) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
-            startActivity(intent);
-        } else if (id == R.id.caseComp) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
-            startActivity(intent);
-        } else if (id == R.id.netcard) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
-            startActivity(intent);
-        } else if (id == R.id.soundcard) {
+        } else if (id == R.id.decor) {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
         } else if (id == R.id.notifications) {
