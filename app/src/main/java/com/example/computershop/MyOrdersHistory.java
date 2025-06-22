@@ -50,7 +50,7 @@ public class MyOrdersHistory extends AppCompatActivity {
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.mainpage) {
-            Intent intent = new Intent(MyOrdersHistory.this, ShopPage.class);
+            Intent intent = new Intent(MyOrdersHistory.this, ShopList.class);
             startActivity(intent);
             return true;
 

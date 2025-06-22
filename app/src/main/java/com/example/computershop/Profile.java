@@ -40,7 +40,7 @@ public class Profile extends AppCompatActivity {
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.mainpage) {
-            Intent intent = new Intent(Profile.this, ShopPage.class);
+            Intent intent = new Intent(Profile.this, ShopList.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.categories) {

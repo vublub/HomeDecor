@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class CreateAccount extends AppCompatActivity {
     int color = Color.rgb(255, 1, 1);
     EditText firstName, emailAddressPhone, passwordNew, passwirdAgain;
-    Button Сontsign, returntoPage, SingIn, Reg;
+    Button contsign, returntoPage, SingIn, Reg;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class CreateAccount extends AppCompatActivity {
         returntoPage = findViewById(R.id.returnToPage);
         SingIn = findViewById(R.id.singIn);
         Reg = findViewById(R.id.reg);
-        Сontsign = findViewById(R.id.contsign);
+        contsign = findViewById(R.id.contsign);
         firstName = findViewById(R.id.name);
         emailAddressPhone = findViewById(R.id.email);
         passwordNew = findViewById(R.id.pas1n);

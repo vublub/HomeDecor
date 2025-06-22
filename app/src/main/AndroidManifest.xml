@@ -42,10 +42,6 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".Discounts"
-            android:exported="true">
-        </activity>
-        <activity
             android:name=".MyOrdersHistory"
             android:exported="true">
         </activity>
@@ -65,6 +61,9 @@
             android:name=".ProductDetails"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".Profile"
+            android:exported="true">
+        </activity>
     </application>
-
 </manifest>
