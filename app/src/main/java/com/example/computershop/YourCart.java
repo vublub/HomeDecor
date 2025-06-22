@@ -2,11 +2,13 @@ package com.example.computershop;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -54,6 +56,31 @@ public class YourCart extends AppCompatActivity {
         recyclerYourCart.setLayoutManager(layoutManager);
         YourCartAdapter yourCartAdapt = new YourCartAdapter(prodArr, getApplicationContext(), this::onItemClick);
         recyclerYourCart.setAdapter(yourCartAdapt);
+    }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.mainpage) {
+            Intent intent = new Intent(YourCart.this, ShopPage.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.categories) {
+            Intent intent = new Intent(YourCart.this, ShopPage.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.orders) {
+            Intent intent = new Intent(YourCart.this, MyOrdersHistory.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.wishlist) {
+            Intent intent = new Intent(YourCart.this, YourCart.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.profile) {
+            Intent intent = new Intent(YourCart.this, Profile.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
     public void onItemClick(YourCart_Class product, int position) {
         Intent intent = new Intent(YourCart.this, ProductDetails.class);

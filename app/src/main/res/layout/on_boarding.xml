@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.364" />
     <LinearLayout
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -41,27 +42,25 @@
         app:layout_constraintTop_toBottomOf="@+id/textHome"
         app:layout_constraintStart_toStartOf="@+id/textHome"/>
     </LinearLayout>
-
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="Create your dream house"
+     android:textColor="@color/lightText"
+     android:textSize="20dp"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/text"
+     app:layout_constraintBottom_toTopOf="@+id/Start_btn"/>
     <Button
-        android:id="@+id/Login_btn"
+        android:id="@+id/Start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:backgroundTint="@color/pink"
-        android:text="Log In"
+        android:text="Get Started"
         android:textColor="@color/darkText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <Button
-        android:id="@+id/singin_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="@color/lightPink"
-        android:text="Sing In"
-        android:textColor="@color/lightText"
-        app:layout_constraintTop_toBottomOf="@id/Login_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

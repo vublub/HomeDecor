@@ -55,7 +55,7 @@ public class MyOrdersHistory extends AppCompatActivity {
             return true;
 
         } else if (id == R.id.categories) {
-            Intent intent = new Intent(MyOrdersHistory.this, MyOrdersHistory.class);
+            Intent intent = new Intent(MyOrdersHistory.this, ShopPage.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.orders) {
@@ -63,11 +63,11 @@ public class MyOrdersHistory extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.wishlist) {
-            Intent intent = new Intent(MyOrdersHistory.this, MyOrdersHistory.class);
+            Intent intent = new Intent(MyOrdersHistory.this, YourCart.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.profile) {
-            Intent intent = new Intent(MyOrdersHistory.this, Discounts.class);
+            Intent intent = new Intent(MyOrdersHistory.this, Profile.class);
             startActivity(intent);
             return true;
         }

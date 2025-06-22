@@ -80,7 +80,7 @@ public class ShopPage extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.categories) {
-            Intent intent = new Intent(ShopPage.this, MyOrdersHistory.class);
+            Intent intent = new Intent(ShopPage.this, ShopPage.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.orders) {
@@ -88,11 +88,11 @@ public class ShopPage extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.wishlist) {
-            Intent intent = new Intent(ShopPage.this, MyOrdersHistory.class);
+            Intent intent = new Intent(ShopPage.this, YourCart.class);
             startActivity(intent);
             return true;
         } else if (id == R.id.profile) {
-            Intent intent = new Intent(ShopPage.this, Discounts.class);
+            Intent intent = new Intent(ShopPage.this, Profile.class);
             startActivity(intent);
             return true;
         }

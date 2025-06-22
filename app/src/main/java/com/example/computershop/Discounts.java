@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -31,8 +32,6 @@ public class Discounts extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        menuNavigateDis = findViewById(R.id.navigatMenusales);
-        menuNavigateDis.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
         recyclerDiscounts = findViewById(R.id.recyclerDiscounts);
         ArrayList<DiscountsItem_Class> discountArray = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
@@ -40,30 +39,10 @@ public class Discounts extends AppCompatActivity {
         DiscountAdapter discountAdapt = new DiscountAdapter(discountArray, getApplicationContext());
         recyclerDiscounts.setAdapter(discountAdapt);
     }
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.mainpage) {
-            Intent intent = new Intent(Discounts.this, ShopPage.class);
-            startActivity(intent);
-            return true;
-            
-        } else if (id == R.id.categories) {
-            Intent intent = new Intent(Discounts.this, MyOrdersHistory.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.orders) {
-            Intent intent = new Intent(Discounts.this, MyOrdersHistory.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.wishlist) {
-            Intent intent = new Intent(Discounts.this, MyOrdersHistory.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.profile) {
-            Intent intent = new Intent(Discounts.this, Discounts.class);
-            startActivity(intent);
-            return true;
-        }
-        return false;
+    public void onClick(View view){
+        int id = view.getId();
+        if (id == R.id.backOnProfile){
+            Intent intent = new Intent(Discounts.this, Profile.class);
+            startActivity(intent);}
     }
 }

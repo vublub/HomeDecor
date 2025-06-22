@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="@color/darkText"
                 android:text="Filter for price"
                 android:gravity="center"
                 android:textSize="20dp"/>
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="@color/darkText"
                 android:text="Filter for alphabet"
                 android:gravity="center"
                 android:textSize="20dp"/>
@@ -78,6 +78,7 @@
         android:layout_gravity="bottom"
         android:gravity="bottom">
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            app:labelVisibilityMode="labeled"
             android:id="@+id/navigatMenuShopList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

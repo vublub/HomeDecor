@@ -12,23 +12,20 @@
         android:text="Discounts"
         android:textStyle="bold"
         android:textSize="35sp"
-        android:textColor="@color/black"
+        android:textColor="@color/pink"
         android:layout_margin="20dp"/>
+    <Button
+        android:id="@+id/backOnProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/str"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDiscounts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:gravity="bottom">
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigatMenusales"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:menu="@menu/bottom_menu"/>
     </LinearLayout>
-</LinearLayout>
