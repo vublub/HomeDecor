@@ -18,7 +18,7 @@
         android:textSize="40sp"
         android:text="    "/>
     <TextView
-        android:id="@+id/nameOfDiscount"
+        android:id="@+id/nameOfCaterory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/lightText"

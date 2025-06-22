@@ -48,25 +48,25 @@ public class ShopPage extends AppCompatActivity {
             Intent intent = new Intent(ShopPage.this, SignIn.class);
             startActivity(intent);
         } else if (id == R.id.kitchen) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.livingRoom) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.bedroom) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.bathroom) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.office) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.diningRoom) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.decor) {
-            Intent intent = new Intent(ShopPage.this, SignIn.class);
+            Intent intent = new Intent(ShopPage.this, Category.class);
             startActivity(intent);
         } else if (id == R.id.notifications) {
             Intent intent = new Intent(ShopPage.this, Notifications_Main.class);

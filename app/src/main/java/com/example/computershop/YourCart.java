@@ -1,5 +1,6 @@
 package com.example.computershop;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,17 +17,23 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 public class YourCart extends AppCompatActivity {
     Button returnToOrderHis, proceedToCKout;
     TextView totalYourcart;
     RecyclerView recyclerYourCart;
+    BottomNavigationView menuNavigateCart;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.yourcart_layout);
+        menuNavigateCart = findViewById(R.id.navigatMenuCart);
+        menuNavigateCart.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.yourCartId), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

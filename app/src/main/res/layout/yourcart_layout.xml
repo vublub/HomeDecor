@@ -69,9 +69,8 @@
         </TableLayout>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_gravity="bottom"
         app:labelVisibilityMode="labeled"
-        android:id="@+id/navigatMenu"
+        android:id="@+id/navigatMenuCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
