@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:id="@+id/category_lay">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decor"
+        android:textStyle="bold"
+        android:textSize="35sp"
+        android:textColor="@color/pink"
+        android:layout_margin="20dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recDecor"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_margin="20dp"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        app:labelVisibilityMode="labeled"
+        android:id="@+id/navigatMenuCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_menu"/>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.computershop;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,14 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.computershop.Adapters.ProductAdapter;
+import com.example.computershop.Models.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,68 +35,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShopList extends AppCompatActivity {
-    ToggleButton filterForPrice, filterForAlphabet;
-    TextView nameOfCategory;
+    TextView goToCategory;
     RecyclerView recyclerShopList;
     BottomNavigationView menuNavigateShopList;
-    Button returnFronShopList;
-    List<YourCart_Class> prodArrList;
-    List<YourCart_Class> filteredProductList;
-    YourCartAdapter yourCartAdapt;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.shop_list);
+        getAllProducts();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.shopListId), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        returnFronShopList = findViewById(R.id.ruturnFromShopList);
-        filterForPrice = findViewById(R.id.filterPrice);
-        filterForAlphabet = findViewById(R.id.filterAlphabet);
-        nameOfCategory = findViewById(R.id.changeCategory);
+        goToCategory = findViewById(R.id.goToCategory);
         recyclerShopList = findViewById(R.id.recyclerShopList);
         menuNavigateShopList = findViewById(R.id.navigatMenuShopList);
         menuNavigateShopList.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
-        returnFronShopList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ShopList.this, ShopPage.class);
-                startActivity(intent);
-            }
-        });
-        prodArrList = new ArrayList<>();
+        goToCategory.setOnClickListener(v -> startActivity(new Intent(this, ShopPage.class)));
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        recyclerShopList.setLayoutManager(layoutManager);
-        yourCartAdapt = new YourCartAdapter(prodArrList, getApplicationContext(), this::onItemClick);
-        recyclerShopList.setAdapter(yourCartAdapt);
-        filteredProductList = new ArrayList<>(prodArrList);
-        filterForPrice.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                filterByPrice();
-            } else {
-                showAllProducts();
-            }
-        });
-        filterForAlphabet.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                if (!filterForPrice.isChecked()) {
-                    sortByAlphabet();
-                } else {
-                    Toast.makeText(ShopList.this, "Нельзя сортировать по алфавиту и фильтровать по цене одновременно", Toast.LENGTH_SHORT).show();
-                    filterForAlphabet.setChecked(false);
-                }
-            } else {
-                if (!filterForPrice.isChecked()) {
-                    showAllProducts();
-                }else {
-                    yourCartAdapt.setProducts(filteredProductList);
-                }
-            }
-        });
     }
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -120,49 +87,29 @@ public class ShopList extends AppCompatActivity {
         Intent intent = new Intent(ShopList.this, ProductDetails.class);
         startActivity(intent);
     }
+    private void getAllProducts(){
+        Supabase supabase = new Supabase();
+        supabase.fetchAllProduct(new Supabase.SBC_Callback() {
+            @Override
+            public void onFailure(IOException e) {
+                runOnUiThread(() -> {
+                    Log.e("getAllProducts:onFailure", e.getLocalizedMessage());
+                });
+            }
 
-    private void filterByPrice() {
-        int priceThreshold = 100;
-        filteredProductList = (ArrayList<YourCart_Class>) prodArrList.stream()
-                .filter(product -> {
-                    try {
-                        int price = product.getPriceYourCart();
-                        return price > priceThreshold;
-                    } catch (NumberFormatException e) {
-                        Log.e("YourActivity", "Ошибка при парсинге цены: " + product.getPriceYourCart());
-                        return false;
-                    }
-                })
-                .collect(Collectors.toList());
-        yourCartAdapt.setProducts(filteredProductList);
-        updateRecyclerView();
-    }
-    private void showAllProducts() {
-        filteredProductList.clear();
-        filteredProductList.addAll(prodArrList);
-        yourCartAdapt.setProducts(prodArrList);
-        updateRecyclerView();
-    }
-    private void updateRecyclerView() {
-        yourCartAdapt.notifyDataSetChanged();
-    }
-    private void sortByAlphabet() {
-        if (filteredProductList != null) {
-            Collections.sort(filteredProductList, new Comparator<YourCart_Class>() {
-                @Override
-                public int compare(YourCart_Class product1, YourCart_Class product2) {
-                    if (product1 != null && product1.getNameYourCart() != null && product2 != null && product2.getNameYourCart() != null) {
-                        return product1.getNameYourCart().compareTo(product2.getNameYourCart());
-                    } else if (product1 != null && product1.getNameYourCart() != null) {
-                        return -1;
-                    } else if (product2 != null && product2.getNameYourCart() != null) {
-                        return 1;
-                    } else {
-                        return 0;
-                    }
-                }
-            });
-            updateRecyclerView();
-        }
+            @Override
+            public void onResponse(String responseBody) {
+                runOnUiThread(() -> {
+                    Log.e("getAllProducts:onResponse", responseBody);
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<List<Product>>() {
+                    }.getType();
+                    List<Product> productList = gson.fromJson(responseBody, type);
+                    ProductAdapter productAdapter = new ProductAdapter(getApplicationContext(), productList);
+                    recyclerShopList.setAdapter(productAdapter);
+                    recyclerShopList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                });
+            }
+        });
     }
 }

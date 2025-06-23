@@ -63,7 +63,7 @@ public class ResetPassword extends AppCompatActivity {
         return true;
     }
     private boolean isValuePassword(String pass){
-        EditText password = (EditText) findViewById(R.id.password);
+        EditText password = (EditText) findViewById(R.id.passwordedit);
         if(TextUtils.isEmpty(pass)){
             password.setHint("Put your password");
             password.setHintTextColor(color);

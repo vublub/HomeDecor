@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,23 +16,33 @@
         android:textColor="@color/pink"
         android:layout_marginTop="110dp"
         android:layout_marginLeft="30dp"/>
-    <EditText
-        android:id="@+id/emailAddressOrNumber"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Email Address or Phone number"
-        android:background="@color/lightPink"
-        android:layout_margin="30dp"
-        android:inputType="textEmailAddress"/>
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTextInput"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:hint="Email Address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
         android:hint="Password"
-        android:background="@color/lightPink"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:inputType="textEmailAddress"/>
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordedit"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/contsign"
         android:layout_width="match_parent"
