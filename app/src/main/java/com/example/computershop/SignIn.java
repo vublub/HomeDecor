@@ -119,7 +119,7 @@ public class SignIn extends AppCompatActivity {
 
  public void loginUser(String email, String password){
         Supabase supabase = new Supabase();
-        LoginRequest loginRequest = new LoginRequest(email, password);
+        LoginRequest loginRequest = new LoginRequest(password, email);
         supabase.login(loginRequest, new Supabase.SBC_Callback() {
             @Override
             public void onFailure(IOException e) {
