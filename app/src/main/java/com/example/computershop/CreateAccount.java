@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -18,12 +19,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.computershop.Models.AuthResponse;
+import com.example.computershop.Models.LoginRequest;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class CreateAccount extends AppCompatActivity {
     int color = Color.rgb(255, 1, 1);
-    EditText firstName, emailAddressPhone, passwordNew, passwirdAgain;
-    Button contsign, returntoPage, SingIn, Reg;
+
+    TextInputLayout emailTextInput, passwordTextInputLayout;
+    TextInputEditText emailedit, passwordedit;
+    Button contsign, returntoPage, Reg;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +46,13 @@ public class CreateAccount extends AppCompatActivity {
             return insets;
         });
         returntoPage = findViewById(R.id.returnToPage);
-        SingIn = findViewById(R.id.singIn);
+        emailTextInput = findViewById(R.id.emailTextInput);
+        passwordTextInputLayout = findViewById(R.id.passwordTextInputLayout);
+        emailedit = findViewById(R.id.emailedit);
+        passwordedit = findViewById(R.id.passwordedit);
         Reg = findViewById(R.id.reg);
         contsign = findViewById(R.id.contsign);
-        firstName = findViewById(R.id.name);
-        emailAddressPhone = findViewById(R.id.email);
-        passwordNew = findViewById(R.id.pas1n);
+
         returntoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,52 +63,67 @@ public class CreateAccount extends AppCompatActivity {
         Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstnameInput = firstName.getText().toString().trim();
-                String emailphoneInput = emailAddressPhone.getText().toString().trim();
-                String pass1Input = passwordNew.getText().toString().trim();
-                String pass2Input = passwirdAgain.getText().toString().trim();
-                if(isValuePassword(pass1Input, pass2Input) && isValueName(firstnameInput)
-                && isValueEmailOrNumber(emailphoneInput)) {
-                    Toast.makeText(CreateAccount.this, "Account has been created!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CreateAccount.this, ShopPage.class);
-                    startActivity(intent);
+                if (validateInput()) {
+                    String email = emailedit.getText().toString().trim();
+                    String password = passwordedit.getText().toString();
+                   signupUser(password, email);
                 }
             }
         });
     }
-    private boolean isValuePassword(String pass1, String pass2){
-        if(TextUtils.isEmpty(pass1)){
-            passwordNew.setHint("Put a password");
-            passwirdAgain.setHintTextColor(color);
-            Toast.makeText(CreateAccount.this, "Please, put a password in", Toast.LENGTH_SHORT).show();
-            return false;}
-        if(pass1.length()<8){
-            Toast.makeText(CreateAccount.this, "Password is too short", Toast.LENGTH_SHORT).show();
+    private boolean validateInput() {
+        String email = emailedit.getText().toString().trim();
+        String password = passwordedit.getText().toString().trim();
+
+        // Email Validation
+        if (email.isEmpty()) {
+            emailTextInput.setError("Email is required");
             return false;
+        } else if (!isValidEmail(email)) {
+            emailTextInput.setError("Invalid email address");
+            return false;
+        } else {
+            emailTextInput.setError(null);
         }
+        if (password.isEmpty()) {
+            passwordTextInputLayout.setError("Password is required");
+            return false;
+        } else if (password.length() < 6) {
+            passwordTextInputLayout.setError("Password must be at least 6 characters");
+            return false;
+        } else {
+            passwordTextInputLayout.setError(null);
+        }
+
         return true;
     }
-    private boolean isValueName(String fname){
-        if(TextUtils.isEmpty(fname)){
-            firstName.setHint("Needs a name");
-            firstName.setHintTextColor(color);
-            Toast.makeText(CreateAccount.this, "Please, put a name", Toast.LENGTH_SHORT).show();
-            return false;}
-        return true;
+    private boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
     }
-    private boolean isValueEmailOrNumber(String input){
-        if(TextUtils.isEmpty(input)){
-            emailAddressPhone.setHint("Put your email address");
-            emailAddressPhone.setHintTextColor(color);
-            Toast.makeText(CreateAccount.this, "Put an email address", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
-            return true;
-        }
-        emailAddressPhone.setHint("Incorrect email or phone format");
-        emailAddressPhone.setHintTextColor(color);
-        Toast.makeText(CreateAccount.this, "Incorrect email", Toast.LENGTH_SHORT).show();
-        return false;
+
+    private void signupUser(String email,String password){
+        Supabase supabaseClient = new Supabase();
+        LoginRequest loginRequest = new LoginRequest(email,password);
+        supabaseClient.registerUser(loginRequest, new Supabase.SBC_Callback() {
+            @Override
+            public void onFailure(IOException e) {
+                runOnUiThread(() -> {
+                    Log.e("signupUser:onFailure", e.getLocalizedMessage());
+                });
+            }
+            @Override
+            public void onResponse(String responseBody) {
+                runOnUiThread(() -> {
+                    Log.e("signupUser:onResponse", responseBody);
+                    Gson gson = new Gson();
+                    AuthResponse auth=gson.fromJson(responseBody, AuthResponse.class);
+                    DataBinding.saveBearerToken("Bearer "+auth.getAccess_token());
+                    DataBinding.saveUuidUser(auth.getUser().getId());
+                    startActivity(new Intent(getApplicationContext(), ShopList.class));
+                    Log.e("signupUser:onResponse", auth.getUser().getId());
+                });
+            }
+        });
     }
 }

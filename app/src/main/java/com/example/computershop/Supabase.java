@@ -255,4 +255,86 @@ public class Supabase {
             }
         });
     }
+
+
+    public void registerUser(LoginRequest loginRequest, final SBC_Callback callBack){
+        MediaType mediaType = MediaType.parse("application/json");
+        Gson gson = new Gson();
+        String json = gson.toJson(loginRequest);
+        RequestBody body = RequestBody.create(json, mediaType);
+        Request request = new Request.Builder()
+                .url(DOMAIN_NAME + AUTH_PATH + "signup")
+                .method("POST", body)
+                .addHeader("apikey", API_KEY)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                callBack.onFailure(e);
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()){
+                    String responseBody = response.body().string();
+                    callBack.onResponse(responseBody);
+                } else {
+                    callBack.onFailure(new IOException("Server error:" + response));
+                }
+            }
+        });
+    }
+    public void update(String userId, String fullName, SBC_Callback callBack){
+        MediaType mediaType = MediaType.parse("application/json");
+        Gson gson = new Gson();
+        String json = String.format("{\"fullname\": \"%s\"}", fullName);
+        RequestBody body = RequestBody.create(json, mediaType);
+        Request request = new Request.Builder()
+                .url(DOMAIN_NAME + REST_PATH + "profiles?id=eq." + DataBinding.getUuidUser())
+                .method("PATCH", body)
+                .addHeader("apikey", API_KEY)
+                .addHeader("Authorization", DataBinding.getBearerToken())
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Prefer", "return=minimal")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                callBack.onFailure(e);
+            }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()){
+                    String responseBody = response.body().string();
+                    callBack.onResponse(responseBody);
+                } else {
+                    callBack.onFailure(new IOException("Server error:" + response));
+                }
+            }
+        });
+    }
+
+    public void FetchCurrentUser(final SBC_Callback callBack){
+        Request request = new Request.Builder()
+                .url(DOMAIN_NAME + REST_PATH + "profiles?select=*id=eq." + DataBinding.getUuidUser())
+                .addHeader("apikey", API_KEY)
+                .addHeader("Authorization", DataBinding.getBearerToken())
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                callBack.onFailure(e);
+            }
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                if (response.isSuccessful()){
+                    String responseBody = response.body().string();
+                    callBack.onResponse(responseBody);
+                } else {
+                    callBack.onFailure(new IOException("Server error:" + response));
+                }
+            }
+        });
+    }
 }

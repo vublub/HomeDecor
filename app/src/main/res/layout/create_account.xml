@@ -15,63 +15,41 @@ android:background="#FFFFFF">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Login"
+    android:text="Sign up"
     android:textSize="32sp"
-    android:textStyle="italic"
     android:gravity="center"
-    android:textColor="#000000"
+    android:textColor="@color/pink"
     android:layout_marginTop="110dp"
-    android:layout_marginLeft="150dp"/>
-<EditText
-    android:id="@+id/name"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:hint="User Name"
-    android:textStyle="bold|italic"
-    android:background="@color/lightPink"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginTop="30dp"
-    android:inputType="textEmailAddress"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
-
-<EditText
-    android:id="@+id/email"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:hint="Email Address"
-    android:textStyle="bold|italic"
-    android:background="@color/lightPink"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:inputType="textEmailAddress"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    app:layout_constraintTop_toBottomOf="@id/name"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="8dp" />
-
-<EditText
-    android:id="@+id/pas1n"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:hint="Password"
-    android:textStyle="bold|italic"
-    android:background="@color/lightPink"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:inputType="textPassword"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    app:layout_constraintTop_toBottomOf="@id/email"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginTop="8dp" />
+    android:layout_marginLeft="20dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/emailTextInput"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:hint="Email Address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordTextInputLayout"
+        android:layout_marginTop="10dp"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:hint="Password"
+        app:passwordToggleEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordedit"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -99,22 +77,6 @@ android:background="#FFFFFF">
         android:layout_marginLeft="5dp"/>
 </LinearLayout>
 <Button
-    android:id="@+id/singIn"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginTop="30dp"
-    android:background="@color/pink"
-    android:text="Авторизоваться"
-    android:textSize="20sp"
-    android:textStyle="italic"
-    app:backgroundTint="@null"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"/>
-
-<Button
 android:id="@+id/reg"
 android:layout_width="match_parent"
 android:layout_height="60dp"
@@ -122,27 +84,9 @@ android:layout_marginStart="30dp"
 android:layout_marginEnd="30dp"
 android:layout_marginTop="16dp"
 android:background="@color/pink"
-android:text="Зарегистрироваться"
+android:text="Sign up"
 android:textSize="20sp"
-android:textStyle="italic"
 app:backgroundTint="@null"
-app:layout_constraintTop_toBottomOf="@id/singIn"
 app:layout_constraintStart_toStartOf="parent"
 app:layout_constraintEnd_toEndOf="parent"/>
-
-<Button
-android:id="@+id/contsign"
-android:layout_width="match_parent"
-android:layout_height="60dp"
-android:layout_marginStart="30dp"
-android:layout_marginEnd="30dp"
-android:layout_marginTop="16dp"
-android:background="@color/pink"
-android:text="Pin-code"
-android:textSize="20sp"
-android:textStyle="italic"
-app:backgroundTint="@null"
-app:layout_constraintTop_toBottomOf="@id/reg"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintEnd_toEndOf="parent"/>
-    </LinearLayout>
+</LinearLayout>
