@@ -235,7 +235,7 @@ public class Supabase {
         Request request = new Request.Builder()
                 .url(DOMAIN_NAME + AUTH_PATH + "token?grant_type=password")
                 .method("POST", body)
-                .addHeader("apikey", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6bG1rb2ZjeXl3aWVycXplZmt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkwMzM1MTIsImV4cCI6MjA2NDYwOTUxMn0.gPcsdQZwJqHSbJ01F8oLpRiMuYENNcnlxKRPiPwSXk0")
+                .addHeader("apikey", API_KEY)
                 .addHeader("Content-Type", "application/json")
                 .build();
         client.newCall(request).enqueue(new Callback() {
