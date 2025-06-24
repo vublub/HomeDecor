@@ -317,7 +317,7 @@ public class Supabase {
 
     public void FetchCurrentUser(final SBC_Callback callBack){
         Request request = new Request.Builder()
-                .url(DOMAIN_NAME + REST_PATH + "profiles?select=*id=eq." + DataBinding.getUuidUser())
+                .url(DOMAIN_NAME + REST_PATH + "profiles?select=*&id=eq." + DataBinding.getUuidUser())
                 .addHeader("apikey", API_KEY)
                 .addHeader("Authorization", DataBinding.getBearerToken())
                 .build();

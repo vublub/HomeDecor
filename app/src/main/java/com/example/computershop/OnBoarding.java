@@ -15,15 +15,14 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 
 public class OnBoarding extends AppCompatActivity {
-    Button Start;
-
-    @SuppressLint("MissingInflatedId")
+    Button Start, signUp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.on_boarding);
-        Start = findViewById(R.id.Start_btn);
+        Start = findViewById(R.id.login_btn);
+        signUp = findViewById(R.id.signup_btn);
     Start.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -31,5 +30,13 @@ public class OnBoarding extends AppCompatActivity {
             startActivity(intent);
         }
     });
+    signUp.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(OnBoarding.this, CreateAccount.class);
+            startActivity(intent);
+        }
+    });
+
 }
 }

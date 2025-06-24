@@ -86,39 +86,38 @@ public class Profile extends AppCompatActivity {
         return false;
     }
 
-    private void getCurrentUser(){
+    private void getCurrentUser() {
         Supabase supabase = new Supabase();
         supabase.FetchCurrentUser(new Supabase.SBC_Callback() {
             @Override
             public void onFailure(IOException e) {
-                runOnUiThread(() -> {
-                    Log.e("getCurrentUser:onFailure", e.getLocalizedMessage());
-                });
+                runOnUiThread(() -> Log.e("Profile", "Error: " + e.getMessage()));
             }
+
             @Override
             public void onResponse(String responseBody) {
                 runOnUiThread(() -> {
-                    Log.e("getCurrentUser:onResponse", responseBody);
-                    Gson gson = new Gson();
-                    Type type = new TypeToken<List<Users>>() {}.getType();
-                    List<Users> userlist = gson.fromJson(responseBody, type);
-                    String url = "https://uzlmkofcyywierqzefku.supabase.co/storage/v1/object/public/avatars/";
-                    if (userlist != null && !userlist.isEmpty()){
-                        String loggedInUserId = DataBinding.getUuidUser();
-                        Users profile = null;
-                        for (Users u : userlist) {
-                            if (u.getId().equals(loggedInUserId)) {
-                                profile = u;
-                                break;
-                            }
+                    try {
+                        Log.d("Profile", "Response: " + responseBody);
+
+                        Gson gson = new Gson();
+                        Type userListType = new TypeToken<List<Users>>(){}.getType();
+                        List<Users> users = gson.fromJson(responseBody, userListType);
+
+                        if (users != null && !users.isEmpty()) {
+                            Users currentUser = users.get(0);
+                            username.setText(currentUser.getFull_name());
+
+                            String avatarUrl = "https://uzlmkofcyywierqzefku.supabase.co/storage/v1/object/public/avatars/" +
+                                    currentUser.getAvatar_url();
+                            Glide.with(Profile.this)
+                                    .load(avatarUrl)
+                                    .placeholder(R.drawable.profile)
+                                    .error(R.drawable.profile)
+                                    .into(profileImage);
                         }
-                        String getav = profile.getAvatar_url();
-                        Glide.with(Profile.this)
-                                .load(url + getav)
-                                .placeholder(R.drawable.profile)
-                                .error(R.drawable.profile)
-                                .into(profileImage);
-                        username.setText(profile.getFullname());
+                    } catch (Exception e) {
+                        Log.e("Profile", "Parse error: " + e.getMessage());
                     }
                 });
             }

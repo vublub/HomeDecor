@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         sleep(100);
                         logoTimer = logoTimer +100;
                     };
-                    Intent intent = new Intent(MainActivity.this, SignIn.class);
+                    Intent intent = new Intent(MainActivity.this, OnBoarding.class);
                     startActivity(intent);
                 }
                 catch (InterruptedException e)
